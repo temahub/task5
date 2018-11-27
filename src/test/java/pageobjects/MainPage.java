@@ -28,6 +28,6 @@ public class MainPage {
     }
 
     public void selectMenuAdvenures(){
-        gameMenu.selectItem(GameMenu.SubGameMenu.Massively_Multiplayer);
+        gameMenu.selectItem(GameMenu.SubGameMenu.ACTION);
     }
 }

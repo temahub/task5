@@ -40,15 +40,12 @@ public class GameMenu {
 
     private WebElement MenuItem(SubGameMenu subGameMenu){
         String fullPath = String.format(MENUPATH, subGameMenu.getSubItem());
-        System.out.println(fullPath);
         return driver.findElement(By.xpath(fullPath));
     }
 
     public void selectItem(SubGameMenu subGameMenu){
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.xpath(MENU))).build().perform();
-        actions.moveToElement(MenuItem(subGameMenu)).click().build().perform();
-
-        //MenuItem(subGameMenu).click();
+        MenuItem(subGameMenu).click();
     }
 }
