@@ -27,13 +27,14 @@ public class TestRunner {
 
     @AfterClass
     public void tearDown(){
-        driver.close();
+        //driver.close();
     }
 
     @Test
     public void steamTest(){
         Assert.assertEquals(MAIN_PAGE_TITLE, driver.getTitle());
-        mainPage.selectMenuAdvenures();
+        mainPage.selectMenuAdventures();
+        mainPage.selectTopSellerGame();
     }
 
 
