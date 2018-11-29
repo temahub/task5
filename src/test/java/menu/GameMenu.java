@@ -7,21 +7,21 @@ import org.openqa.selenium.interactions.Actions;
 
 public class GameMenu {
 
-    private static final String MENU = "//*[@class='pulldown_desktop' and text()='Games']";
-    private static final String MENUPATH = "//*[contains(text(),'%s')]";
+    private static final String MENU = "//div[@id='genre_tab']/span[@class='pulldown' and 1]";
+    private static final String MENUPATH = "//*[@id=\"genre_flyout\"]/div/a[%s]";
     private WebDriver driver;
 
     public enum SubGameMenu{
-        ACTION("Action"),
-        ADVENTURE("Adventure"),
-        CASUAL("Casual"),
-        INDIE("Indie"),
-        Massively_Multiplayer("Massively Multiplayer"),
-        RACING("Racing"),
-        RPG("RPG"),
-        SIMULATION("Simulation"),
-        SPORTS("Sports"),
-        STRATEGY("Strategy");
+        ACTION("7"),
+        ADVENTURE("8"),
+        CASUAL("9"),
+        INDIE("10"),
+        Massively_Multiplayer("11"),
+        RACING("12"),
+        RPG("13"),
+        SIMULATION("14"),
+        SPORTS("15"),
+        STRATEGY("16");
 
         private String subItem;
 

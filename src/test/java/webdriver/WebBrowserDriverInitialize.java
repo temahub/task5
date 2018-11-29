@@ -3,8 +3,11 @@ package webdriver;
 import org.json.JSONException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import util.ReaderSettings;
 
 import java.io.IOException;
@@ -22,9 +25,23 @@ public class WebBrowserDriverInitialize {
         if (driver == null){
             synchronized (WebDriver.class){
                 if (ReaderSettings.browserName.equalsIgnoreCase(CHROME)){
-                    driver = new ChromeDriver();
+                    ChromeOptions chOptions = new ChromeOptions();
+                    driver = new ChromeDriver(chOptions);
+
+
+
+
                 }else if (ReaderSettings.browserName.equalsIgnoreCase(FIREFOX)){
-                    driver = new FirefoxDriver();
+                    FirefoxOptions fxOptions = new FirefoxOptions();
+                    FirefoxProfile fxProfile = new FirefoxProfile();
+                    fxProfile.setPreference("browser.download.folderList",2);
+                    fxProfile.setPreference("browser.download.manager.showWhenStarting",false);
+                    fxProfile.setPreference("browser.download.dir","c:\\tmp/");
+                    fxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+                            "application/vnd.microsoft.portable-executable");
+                    fxOptions.setProfile(fxProfile);
+
+                    driver = new FirefoxDriver(fxOptions);
                 }
             }
 

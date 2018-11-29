@@ -13,7 +13,7 @@ import static webdriver.WebBrowserDriverInitialize.*;
 
 public class TestRunner {
 
-    private static final String MAIN_PAGE_TITLE = "Welcome to Steam";
+    private static final String MAIN_PAGE_URL = "https://store.steampowered.com/";
 
     private MainPage mainPage;
     private WebDriver driver;
@@ -32,9 +32,11 @@ public class TestRunner {
 
     @Test
     public void steamTest(){
-        Assert.assertEquals(MAIN_PAGE_TITLE, driver.getTitle());
+        Assert.assertEquals(MAIN_PAGE_URL, driver.getCurrentUrl());
         mainPage.selectMenuAdventures();
         mainPage.selectTopSellerGame();
+
+        mainPage.downloadSteam();
     }
 
 
