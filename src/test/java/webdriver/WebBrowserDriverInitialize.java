@@ -39,11 +39,21 @@ public class WebBrowserDriverInitialize {
                 }else if (ReaderSettings.browserName.equalsIgnoreCase(FIREFOX)){
                     FirefoxOptions fxOptions = new FirefoxOptions();
                     FirefoxProfile fxProfile = new FirefoxProfile();
+                    fxProfile.setPreference("browser.download.dir", System.getProperty("user.home"));
                     fxProfile.setPreference("browser.download.folderList",2);
-                    fxProfile.setPreference("browser.download.manager.showWhenStarting",false);
-                    fxProfile.setPreference("browser.download.dir",System.getProperty("user.home"));
                     fxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk",
-                            "application/vnd.microsoft.portable-executable");
+                            "text/plain,application/octet-stream,application/pdf,application/x-pdf,application/vnd.pdf");
+                    fxProfile.setPreference("browser.download.manager.showWhenStarting", false);
+                    fxProfile.setPreference("browser.helperApps.neverAsk.openFile",
+                            "text/plain,application/octet-stream,application/pdf,application/x-pdf,application/vnd.pdf");
+                    fxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
+                    fxProfile.setPreference("browser.download.manager.useWindow", false);
+                    fxProfile.setPreference("browser.download.manager.focusWhenStarting", false);
+                    fxProfile.setPreference("browser.helperApps.neverAsk.openFile", "");
+                    fxProfile.setPreference("browser.download.manager.alertOnEXEOpen", false);
+                    fxProfile.setPreference("browser.download.manager.showAlertOnComplete", false);
+                    fxProfile.setPreference("browser.download.manager.closeWhenDone", true);
+                    fxProfile.setPreference("pdfjs.disabled", true);
                     fxOptions.setProfile(fxProfile);
 
                     driver = new FirefoxDriver(fxOptions);
