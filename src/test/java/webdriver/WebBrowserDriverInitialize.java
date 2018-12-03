@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import util.ReaderSettings;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class WebBrowserDriverInitialize {
@@ -26,17 +27,19 @@ public class WebBrowserDriverInitialize {
             synchronized (WebDriver.class){
                 if (ReaderSettings.browserName.equalsIgnoreCase(CHROME)){
                     ChromeOptions chOptions = new ChromeOptions();
+                    HashMap<String, Object> chPref = new HashMap<>();
+                    chPref.put("download.default_directory", System.getProperty("user.home"));
+                    chPref.put("safebrowsing.enabled", "false");
+                    chOptions.setExperimentalOption("prefs", chPref);
+
                     driver = new ChromeDriver(chOptions);
-
-
-
 
                 }else if (ReaderSettings.browserName.equalsIgnoreCase(FIREFOX)){
                     FirefoxOptions fxOptions = new FirefoxOptions();
                     FirefoxProfile fxProfile = new FirefoxProfile();
                     fxProfile.setPreference("browser.download.folderList",2);
                     fxProfile.setPreference("browser.download.manager.showWhenStarting",false);
-                    fxProfile.setPreference("browser.download.dir","c:\\tmp/");
+                    fxProfile.setPreference("browser.download.dir",System.getProperty("user.home"));
                     fxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk",
                             "application/vnd.microsoft.portable-executable");
                     fxOptions.setProfile(fxProfile);
