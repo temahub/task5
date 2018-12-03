@@ -18,6 +18,8 @@ public class WebBrowserDriverInitialize {
     private static final String SETTINGS = "src/test/resources/settings.JSON";
     private static final String CHROME = "chrome";
     private static final String FIREFOX = "firefox";
+    private static final int IMPLICITLYWAIT = 40;
+    private static final int LOADWAIT = 60;
 
     private volatile static WebDriver driver = null;
 
@@ -50,8 +52,8 @@ public class WebBrowserDriverInitialize {
 
             driver.manage().deleteAllCookies();
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICITLYWAIT, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(LOADWAIT, TimeUnit.SECONDS);
         }
         return driver;
     }
