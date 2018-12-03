@@ -13,12 +13,13 @@ public class MainPage {
 
     private static final String TOPSELLING = "//*[@id=\"tab_select_TopSellers\"]/div";
     private static final String MAXSALE =
-            "//a/div[@class='discount_block tab_item_discount' and 2]/div[@class='discount_pct' and 1]";
+            "//a/div[@class='discount_block tab_item_discount']/div[@class='discount_pct']";
     private static final String AGEYEAR = "//select[@id='ageYear']";
-    private static final String VIEWPAGE = "//*[@id=\"app_agegate\"]/div[1]/div[4]/a[1]/span";
-    private static final String INSTALLSTEAM = "https://store.steampowered.com/about/";
+    private static final String VIEWPAGE = "//a[contains(@onclick,'ViewProductPage()')]";
+    private static final String INSTALLSTEAM =
+            "//div[contains(@class,'header_installsteam_btn header_installsteam_btn_green')]";
     private static final String DOWNLOADSTEAM =
-            "//div[2]/a[@id='about_install_steam_link' and @class='btn_medium btn_green_white_innerfade' and 1]/span[1]";
+            "//a[contains(@id,'about_install_steam_link')]";
     private static final String AGE = "1980";
     public static final String REGEXINTEGER = "[^0-9]";
 
@@ -37,7 +38,7 @@ public class MainPage {
     }
 
     public void selectMenuAdventures(){
-        gameMenu.selectItem(GameMenu.SubGameMenu.ACTION);
+        gameMenu.selectItem(GameMenu.SubGameMenu.Massively_Multiplayer);
     }
 
     public void selectTopSellerGame(){
@@ -60,7 +61,7 @@ public class MainPage {
         }
         maxW.click();
 
-        if (!(driver.findElements(By.xpath(VIEWPAGE)).isEmpty())){
+        if (driver.findElement(By.xpath(VIEWPAGE)).isDisplayed()){
             passAge();
         }
     }
@@ -74,10 +75,10 @@ public class MainPage {
     }
 
     public void downloadSteam() throws InterruptedException{
-        driver.get(INSTALLSTEAM);
+        driver.findElement(By.xpath(INSTALLSTEAM)).click();
         driver.findElement(By.xpath(DOWNLOADSTEAM)).click();
         while (!file.exists()){
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
     }
 }

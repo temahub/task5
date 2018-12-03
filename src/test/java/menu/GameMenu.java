@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class GameMenu {
 
-    private static final String MENU = "//div[@id='genre_tab']/span[@class='pulldown' and 1]";
+    private static final String MENU = "//div[@id='genre_tab']/span[@class='pulldown']";
     private static final String MENUPATH = "//*[@id=\"genre_flyout\"]/div/a[%s]";
     private WebDriver driver;
 

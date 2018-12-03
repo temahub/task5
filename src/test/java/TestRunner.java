@@ -44,5 +44,6 @@ public class TestRunner {
 
         mainPage.downloadSteam();
         Assert.assertTrue(mainPage.file.exists());
+        mainPage.file.delete();
     }
 }
