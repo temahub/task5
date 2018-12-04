@@ -1,4 +1,3 @@
-
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +6,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageobjects.MainPage;
+import util.WebElementText;
 
 import java.io.IOException;
 
-import static pageobjects.MainPage.REGEXINTEGER;
 import static webdriver.WebBrowserDriverInitialize.*;
 
 public class TestRunner {
@@ -39,7 +38,7 @@ public class TestRunner {
 
         mainPage.selectMenuAdventures();
         mainPage.selectTopSellerGame();
-        int sale = Integer.parseInt(driver.findElement(By.xpath(SALE)).getText().replaceAll(REGEXINTEGER, ""));
+        int sale = Integer.parseInt(WebElementText.extractDigitToString(driver.findElement(By.xpath(SALE))));
         Assert.assertEquals(mainPage.maxSale, sale);
 
         mainPage.downloadSteam();

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import util.ReaderSettings;
+import util.WebElementText;
 
 import java.io.File;
 import java.util.*;
@@ -21,12 +22,11 @@ public class MainPage {
     private static final String DOWNLOADSTEAM =
             "//a[contains(@id,'about_install_steam_link')]";
     private static final String AGE = "1980";
-    public static final String REGEXINTEGER = "[^0-9]";
 
     private WebDriver driver;
     private GameMenu gameMenu;
     public int maxSale = 0;
-    public File file = new File(System.getProperty("user.home")+ "/SteamSetup.exe");
+    public File file = new File(System.getProperty("user.home") + "/SteamSetup.exe");
 
     public MainPage(WebDriver driver){
         this.driver = driver;
@@ -50,7 +50,7 @@ public class MainPage {
         WebElement maxW = myList.get(0);
         for (WebElement e : myList
              ) {
-            String price = e.getText().replaceAll(REGEXINTEGER, "");
+            String price = WebElementText.extractDigitToString(e);
             if (price.length() > 0){
                 int saleInt = Integer.parseInt(price);
                 if (saleInt > maxSale){
@@ -61,7 +61,7 @@ public class MainPage {
         }
         maxW.click();
 
-        if (driver.findElement(By.xpath(VIEWPAGE)).isDisplayed()){
+        if (!driver.findElements(By.xpath(VIEWPAGE)).isEmpty()){
             passAge();
         }
     }
